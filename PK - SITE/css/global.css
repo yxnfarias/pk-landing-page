@@ -1,0 +1,248 @@
+/* ============================================================
+   GLOBAL.CSS — PK SITE
+   Design system compartilhado por todas as páginas
+   ============================================================ */
+
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+
+/* ── TOKENS ── */
+:root {
+  --black:        #080809;
+  --deep:         #09090a;
+  --surface:      #0e0e0f;
+  --card:         #141415;
+  --border:       rgba(212,175,55,0.18);
+  --purple:       #A07C20;
+  --purple-light: #FFE566;
+  --blue:         #D4AF37;
+  --blue-light:   #FFE566;
+  --accent:       #D4AF37;
+  --accent-light: #FFE566;
+  --accent-glow:  rgba(212,175,55,0.45);
+  --text:         #F8F5EC;
+  --muted:        #8A8070;
+  --dim:          #252420;
+
+  /* Gradiente dourado padrão para texto */
+  --grad-gold-text: linear-gradient(90deg, #D4AF37 0%, #FFF8E7 55%, #D4AF37 100%);
+  /* Gradiente dourado animado para botões */
+  --grad-gold-btn:  linear-gradient(90deg, #A07C20 0%, #D4AF37 30%, #FFE566 65%, #D4AF37 100%);
+}
+
+
+/* ── RESET & BASE ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--black);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+
+/* ── CURSOR ── */
+.cursor {
+  position: fixed;
+  width: 12px; height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, width 0.2s, height 0.2s, opacity 0.2s;
+  mix-blend-mode: screen;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, width 0.25s, height 0.25s, opacity 0.2s;
+  opacity: 0.5;
+}
+body:hover .cursor { opacity: 1; }
+
+
+/* ── NAVEGAÇÃO ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s, backdrop-filter 0.4s;
+}
+nav.scrolled {
+  background: rgba(9,9,10,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0D0D0D;
+  background: var(--grad-gold-btn);
+  background-size: 200% 100%;
+  padding: 10px 24px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background-position 0.4s ease, transform 0.2s;
+}
+.nav-cta:hover { background-position: right center; transform: translateY(-1px); }
+
+
+/* ── HAMBURGER ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 200;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+/* ── MENU MOBILE ── */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(9,9,10,0.97);
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+.mobile-nav a:hover { color: var(--accent); }
+.mobile-nav .mobile-cta {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--grad-gold-btn);
+  background-size: 200% 100%;
+  color: #0D0D0D;
+  padding: 14px 32px;
+  border-radius: 2px;
+  margin-top: 16px;
+}
+
+
+/* ── BOTÕES UTILITÁRIOS ── */
+
+/* Botão padrão com gradiente dourado animado */
+.btn-gold {
+  display: inline-block;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0D0D0D;
+  background: var(--grad-gold-btn);
+  background-size: 200% 100%;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background-position 0.4s ease, transform 0.2s, box-shadow 0.2s;
+}
+.btn-gold:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(212,175,55,0.2);
+}
+
+/* Texto com gradiente dourado */
+.text-gold-gradient {
+  background: var(--grad-gold-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+
+/* ── RESPONSIVO GLOBAL ── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .cursor, .cursor-ring { display: none; }
+}
+@media (max-width: 480px) {
+  nav { padding: 14px 20px; }
+  .mobile-nav a { font-size: 38px; }
+}
